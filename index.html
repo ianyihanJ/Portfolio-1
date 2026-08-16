@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yihan Jiang — Selected Works & Profile</title>
+
+  <!-- Google Fonts: Inter & Times New Roman (System/Standard) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lenis CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.css">
+
+  <style>
+    /* ==========================================================================
+       1. RESET & COLOR VARIABLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --text-main: #111113;
+      --text-muted: #55555e;
+      --text-sub: #888892;
+      --border-color: rgba(0, 0, 0, 0.12);
+      --card-bg: rgba(255, 255, 255, 0.6);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif-tall: 'Times New Roman', Times, Georgia, serif;
+    }
+
+    html, body {
+      width: 100%;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+      background-color: #ffffff;
+    }
+
+    /* Stretched Times New Roman Title Style (拉长瘦体 serif) */
+    .stretched-title {
+      font-family: var(--font-serif-tall);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-block;
+      transform: scaleY(1.45) scaleX(0.82);
+      transform-origin: left center;
+      line-height: 1.1;
+    }
+
+    /* ==========================================================================
+       2. CUSTOM CURSOR
+       ========================================================================== */
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background-color: #111113;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+      mix-blend-mode: difference;
+    }
+
+    body:hover .cursor-follower.hovered {
+      transform: translate(-50%, -50%) scale(1.8);
+      background-color: rgba(0, 0, 0, 0.08);
+      border-color: #000000;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION & FIXED FROSTED HEADER
+       ========================================================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    header.scrolled {
+      padding: 16px 40px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .brand-logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+      padding: 4px 0;
+      display: inline-block;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--text-main);
+    }
+
+    @media (max-width: 1024px) {
+      .header-nav {
+        display: none; /* Can be expanded to mobile overlay */
+      }
+    }
+
+    /* ==========================================================================
+       4. SECTIONS & PRECISE GRADIENT BACKGROUNDS
+       ========================================================================== */
+    .section-container {
+      position: relative;
+      min-height: 100vh;
+      padding: 120px 40px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background 0.8s ease;
+    }
+
+    /* Section 1: Cover PDF Exact Gradient (纯白 → #c8dce8 → #8db8c8 → #4a9b8e → #2d6b62) */
+    #hero {
+      background: linear-gradient(140deg, #ffffff 0%, #c8dce8 22%, #8db8c8 48%, #4a9b8e 75%, #2d6b62 100%);
+    }
+
+    /* Section 2: Selected Projects (纯白 → #C9A15A 雾状渐变) */
+    #selected-projects {
+      background: radial-gradient(circle at 75% 25%, rgba(201, 161, 90, 0.45) 0%, rgba(201, 161, 90, 0.15) 45%, #ffffff 85%);
+    }
+
+    /* Section 3: Campaign Proposals (纯白 → #1C8577 点状渐变) */
+    #campaign-proposals {
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(28, 133, 119, 0.3) 0%, transparent 60%),
+        radial-gradient(#1C8577 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 24px 24px;
+    }
+
+    /* Section 4: Visual Design (纯白 → #E1723C 点状渐变) */
+    #visual-design {
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 15% 85%, rgba(225, 114, 60, 0.3) 0%, transparent 60%),
+        radial-gradient(#E1723C 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 24px 24px;
+    }
+
+    /* Section 5: Photography (纯白 → #3F6B3A 点状渐变) */
+    #photography {
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 75% 75%, rgba(63, 107, 58, 0.3) 0%, transparent 60%),
+        radial-gradient(#3F6B3A 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 24px 24px;
+    }
+
+    /* Section 6: Experiences & Profile (纯白 → #2E63A6 点状渐变) */
+    #experiences {
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(46, 99, 166, 0.3) 0%, transparent 60%),
+        radial-gradient(#2E63A6 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 24px 24px;
+    }
+
+    /* ==========================================================================
+       5. CONTENT LAYOUTS & COMPONENTS
+       ========================================================================== */
+    .section-header-title {
+      font-size: clamp(48px, 8vw, 110px);
+      margin-bottom: 40px;
+      color: var(--text-main);
+    }
+
+    .reveal-wrap {
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .reveal-item {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .sub-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Portfolio Cards Grid */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .work-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+    }
+
+    .work-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    }
+
+    .work-card-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-sub);
+      text-transform: uppercase;
+    }
+
+    .work-card-title {
+      font-size: clamp(24px, 2.5vw, 36px);
+      margin: 16px 0;
+    }
+
+    .work-card-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    /* Photography Masonry Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .photo-item {
+      height: 240px;
+      background: rgba(0,0,0,0.04);
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .photo-item:hover {
+      background: rgba(0,0,0,0.08);
+      border-style: solid;
+    }
+
+    /* Experience Item Row */
+    .experience-item {
+      display: grid;
+      grid-template-columns: 180px 1.5fr 1fr;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-color);
+      align-items: baseline;
+      transition: padding 0.3s ease, background-color 0.3s ease;
+    }
+
+    .experience-item:hover {
+      padding-left: 16px;
+      padding-right: 16px;
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    /* ==========================================================================
+       6. AUDIO CONTROLLER
+       ========================================================================== */
+    .audio-controller {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border-color);
+      padding: 10px 20px;
+      border-radius: 40px;
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .audio-controller:hover {
+      border-color: rgba(0, 0, 0, 0.3);
+      transform: scale(1.03);
+    }
+
+    .sound-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 14px;
+    }
+
+    .sound-bar {
+      width: 2px;
+      background-color: var(--text-main);
+      height: 4px;
+      border-radius: 1px;
+    }
+
+    .audio-controller.playing .sound-bar:nth-child(1) { animation: soundWave 1.2s infinite ease-in-out; }
+    .audio-controller.playing .sound-bar:nth-child(2) { animation: soundWave 0.8s infinite ease-in-out 0.2s; }
+    .audio-controller.playing .sound-bar:nth-child(3) { animation: soundWave 1.0s infinite ease-in-out 0.4s; }
+
+    @keyframes soundWave {
+      0%, 100% { height: 4px; }
+      50% { height: 14px; }
+    }
+
+    .audio-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    footer {
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-sub);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Header with Frosted Glass & Text Scramble Navigation -->
+  <header id="mainHeader">
+    <a href="#hero" class="brand-logo hover-target">YIHAN JIANG</a>
+    <nav class="header-nav">
+      <a href="#hero" class="nav-link scramble-link hover-target active">ABOUT</a>
+      <a href="#selected-projects" class="nav-link scramble-link hover-target">PROJECTS</a>
+      <a href="#campaign-proposals" class="nav-link scramble-link hover-target">CAMPAIGNS</a>
+      <a href="#visual-design" class="nav-link scramble-link hover-target">VISUALS</a>
+      <a href="#photography" class="nav-link scramble-link hover-target">PHOTO</a>
+      <a href="#experiences" class="nav-link scramble-link hover-target">EXPERIENCES</a>
+    </nav>
+  </header>
+
+  <!-- 1. Hero / About Section (Cover PDF Blue-Green Gradient) -->
+  <section class="section-container" id="hero">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">
+        <span class="reveal-wrap"><span class="reveal-item">MULTIDISCIPLINARY DESIGNER & ART DIRECTOR</span></span>
+      </div>
+      <h1 class="section-header-title">
+        <span class="reveal-wrap"><span class="reveal-item stretched-title">YIHAN JIANG</span></span>
+      </h1>
+      
+      <div class="grid-2col" style="margin-top: 40px;">
+        <div>
+          <p style="font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; color: var(--text-main);">
+            Crafting immersive visual narratives, brand strategy systems, and creative technology experiences.
+          </p>
+        </div>
+        <div>
+          <p style="font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px;">
+            Based in Shanghai & Global. Specializing in identity design, motion direction, 3D character environments, and high-impact digital campaigns. Previously collaborating with Apple, Hornet, and BlackMath.
+          </p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="mailto:yihan.jiang@example.com" style="padding: 12px 28px; border-radius: 30px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.8); text-decoration: none; color: var(--text-main); font-size: 12px; font-weight: 600; letter-spacing: 1px;" class="hover-target">GET IN TOUCH</a>
+            <a href="./assets/docs/Yihan_Jiang_Resume.pdf" style="padding: 12px 28px; border-radius: 30px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.8); text-decoration: none; color: var(--text-main); font-size: 12px; font-weight: 600; letter-spacing: 1px;" class="hover-target" download>RESUME (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Selected Projects Section (#C9A15A Mist Gradient) -->
+  <section class="section-container" id="selected-projects">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">01 / FEATURED ARCHIVE</div>
+      <h2 class="section-header-title">
+        <span class="stretched-title">SELECTED PROJECTS</span>
+      </h2>
+      
+      <div class="works-grid">
+        <a href="#" class="work-card hover-target">
+          <div>
+            <div class="work-card-category">3D ANIMATION / DIRECTION</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 32px;">INTO THE ABYSS</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>INDIGO DESIGN AWARD GOLD</span>
+            <span>2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="work-card hover-target">
+          <div>
+            <div class="work-card-category">DIGITAL BRANDING</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 32px;">MATCHA CARTEL</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>YOUNG ONES ADC WINNER</span>
+            <span>2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="work-card hover-target">
+          <div>
+            <div class="work-card-category">CREATIVE TECHNOLOGY</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 32px;">BETR-AI SHORTS</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>24HRS ANIMATION CONTEST</span>
+            <span>2025</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Campaign Proposals Section (#1C8577 Dotted Gradient) -->
+  <section class="section-container" id="campaign-proposals">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">02 / BRAND STRATEGY</div>
+      <h2 class="section-header-title">
+        <span class="stretched-title">CAMPAIGN PROPOSALS</span>
+      </h2>
+
+      <div class="works-grid">
+        <a href="#" class="work-card hover-target">
+          <div>
+            <div class="work-card-category">GLOBAL REBRAND DECK</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 30px;">NEO-HERITAGE 2026</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>COMMUNICATION ARTS SHORTLIST</span>
+            <span>2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="work-card hover-target">
+          <div>
+            <div class="work-card-category">EXPERIMENTAL MARKETING</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 30px;">COMOTION BRANDING</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>BEST IN SHOW DESIGN</span>
+            <span>2025</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Visual Design Section (#E1723C Dotted Gradient) -->
+  <section class="section-container" id="visual-design">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">03 / EDITORIAL & GRAPHICS</div>
+      <h2 class="section-header-title">
+        <span class="stretched-title">VISUAL DESIGN</span>
+      </h2>
+
+      <div class="works-grid">
+        <div class="work-card hover-target">
+          <div>
+            <div class="work-card-category">ILLUSTRATED COOKBOOK</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 30px;">FLAVORS OF ASIA</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>IDA DESIGN AWARDS SILVER</span>
+            <span>2025</span>
+          </div>
+        </div>
+
+        <div class="work-card hover-target">
+          <div>
+            <div class="work-card-category">MOTION GRAPHICS</div>
+            <div class="work-card-title"><span class="stretched-title" style="font-size: 30px;">KINETIC TYPOGRAPHY</span></div>
+          </div>
+          <div class="work-card-meta">
+            <span>FRAMER SITE OF THE YEAR</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Photography Section (#3F6B3A Dotted Gradient) -->
+  <section class="section-container" id="photography">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">04 / ART & EDITORIAL</div>
+      <h2 class="section-header-title">
+        <span class="stretched-title">PHOTOGRAPHY</span>
+      </h2>
+
+      <div class="photo-grid">
+        <div class="photo-item hover-target">SEOUL STREET CHRONICLES [2024]</div>
+        <div class="photo-item hover-target">ARCHITECTURAL SILENCE [2025]</div>
+        <div class="photo-item hover-target">EDITORIAL PORTRAITURE [2025]</div>
+        <div class="photo-item hover-target">SWEET ESCAPE GALLERY [2026]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Experiences Section (#2E63A6 Dotted Gradient) -->
+  <section class="section-container" id="experiences">
+    <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+      <div class="sub-tag">05 / TIMELINE & CONTACT</div>
+      <h2 class="section-header-title">
+        <span class="stretched-title">EXPERIENCES</span>
+      </h2>
+
+      <div class="experience-list">
+        <div class="experience-item hover-target">
+          <span style="font-size: 12px; color: var(--text-muted);">2025/06 - PRESENT</span>
+          <span style="font-size: 18px; font-weight: 600;"><span class="stretched-title" style="font-size: 22px;">MARCOM IDENTITY INTERN</span></span>
+          <span style="font-size: 13px; color: var(--text-muted); text-align: right;">APPLE / SUNNYVALE, CA</span>
+        </div>
+        <div class="experience-item hover-target">
+          <span style="font-size: 12px; color: var(--text-muted);">2026/01 - 2026/03</span>
+          <span style="font-size: 18px; font-weight: 600;"><span class="stretched-title" style="font-size: 22px;">MOTION DESIGN DIRECTION</span></span>
+          <span style="font-size: 13px; color: var(--text-muted); text-align: right;">HORNET / NEW YORK CITY</span>
+        </div>
+        <div class="experience-item hover-target">
+          <span style="font-size: 12px; color: var(--text-muted);">2025/06 - 2025/12</span>
+          <span style="font-size: 18px; font-weight: 600;"><span class="stretched-title" style="font-size: 22px;">BRANDING TEAM LEAD</span></span>
+          <span style="font-size: 13px; color: var(--text-muted); text-align: right;">BLACKMATH / BOSTON</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BGM Audio Controller -->
+  <div class="audio-controller hover-target" id="audioToggle">
+    <div class="sound-bars">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+    <span class="audio-text" id="audioText">SOUND OFF</span>
+  </div>
+
+  <audio id="bgAudio" loop preload="auto">
+    <source src="./assets/audio/bgm-ambient.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Footer -->
+  <footer>
+    <div>© 2026 YIHAN JIANG. ALL RIGHTS RESERVED.</div>
+    <div>DESIGN SYSTEM & ANIMATION BY GSAP + LENIS</div>
+  </footer>
+
+  <!-- Scripts: GSAP, ScrollTrigger, Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <script>
+    /* ==========================================================================
+       1. LENIS SMOOTH SCROLL & SCROLLTRIGGER INTEGRATION
+       ========================================================================== */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0, 0);
+
+    /* ==========================================================================
+       2. HEADER FROSTED GLASS & ACTIVE ANCHOR SCROLL LOGIC
+       ========================================================================== */
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Update active navbar state based on current section
+    const sections = document.querySelectorAll('.section-container');
+    const navLinks = document.querySelectorAll('.header-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    /* ==========================================================================
+       3. TEXT SCRAMBLE HOVER EFFECT FOR NAVIGATION LINKS
+       ========================================================================== */
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
+      }
+
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 8);
+          const end = start + Math.floor(Math.random() * 12);
+          this.queue.push({ from, to, start, end, char: '' });
+        }
+
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+
+      update() {
+        let output = '';
+        let complete = 0;
+
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span style="opacity: 0.5; font-family: monospace;">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+
+        this.el.innerHTML = output;
+
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
+
+    // Attach scramble effect to each nav link
+    document.querySelectorAll('.scramble-link').forEach(link => {
+      const fx = new TextScramble(link);
+      const originalText = link.innerText.trim();
+      
+      link.addEventListener('mouseenter', () => {
+        fx.setText(originalText);
+      });
+    });
+
+    /* ==========================================================================
+       4. CUSTOM CURSOR
+       ========================================================================== */
+    const dot = document.getElementById('cursorDot');
+    const follower = document.getElementById('cursorFollower');
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = `${mouseX}px`;
+      dot.style.top = `${mouseY}px`;
+    });
+
+    function animateCursor() {
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
+      follower.style.left = `${followerX}px`;
+      follower.style.top = `${followerY}px`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('.hover-target').forEach(elem => {
+      elem.addEventListener('mouseenter', () => follower.classList.add('hovered'));
+      elem.addEventListener('mouseleave', () => follower.classList.remove('hovered'));
+    });
+
+    /* ==========================================================================
+       5. GSAP REVEAL ANIMATIONS
+       ========================================================================== */
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('#hero .reveal-item', {
+      y: '0%',
+      duration: 1.4,
+      ease: 'power4.out',
+      stagger: 0.15,
+      delay: 0.2
+    });
+
+    // Reveal cards on scroll
+    gsap.utils.toArray('.work-card, .photo-item, .experience-item').forEach((item) => {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      });
+    });
+
+    /* ==========================================================================
+       6. AUDIO CONTROLLER WITH SYNTH FALLBACK
+       ========================================================================== */
+    const audioToggle = document.getElementById('audioToggle');
+    const audioText = document.getElementById('audioText');
+    const bgAudio = document.getElementById('bgAudio');
+    let isPlaying = false;
+    let audioCtx, gainNode;
+
+    function initSynth() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.08;
+
+        const freqs = [110, 164.81, 196.00, 246.94];
+        freqs.forEach(freq => {
+          const osc = audioCtx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.connect(gainNode);
+          osc.start();
+        });
+
+        gainNode.connect(audioCtx.destination);
+      }
+    }
+
+    audioToggle.addEventListener('click', () => {
+      if (!isPlaying) {
+        bgAudio.volume = 0.3;
+        const playPromise = bgAudio.play();
+
+        if (playPromise !== undefined) {
+          playPromise.then(() => {}).catch(() => {
+            initSynth();
+            if (audioCtx.state === 'suspended') {
+              audioCtx.resume();
+            }
+          });
+        }
+
+        audioText.innerText = 'SOUND ON';
+        audioToggle.classList.add('playing');
+        isPlaying = true;
+      } else {
+        bgAudio.pause();
+        if (audioCtx) {
+          audioCtx.suspend();
+        }
+        audioText.innerText = 'SOUND OFF';
+        audioToggle.classList.remove('playing');
+        isPlaying = false;
+      }
+    });
+  </script>
+</body>
+</html>
