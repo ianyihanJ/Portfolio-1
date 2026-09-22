@@ -113,8 +113,8 @@ export function InteractiveVisualGallery({ items }: { items: VisualArchiveItem[]
       renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true });
     } catch (error) {
       console.error("Depth gallery WebGL initialization failed", error);
-      setFailed(true);
-      return;
+      const failureTimer = window.setTimeout(() => setFailed(true), 0);
+      return () => window.clearTimeout(failureTimer);
     }
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));

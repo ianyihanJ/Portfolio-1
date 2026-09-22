@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fragment, type CSSProperties } from "react";
 import { headers } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageFrame } from "../../components/PageFrame";
 import { getProject, projects } from "../../data/projects";
@@ -138,9 +139,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="project-case-layout">
           <aside className="project-case-panel">
             <div className="project-case-panel-inner">
-              <a className="page-enter project-back-link" href="/work">
+              <Link className="page-enter project-back-link" href="/work">
                 Back to projects
-              </a>
+              </Link>
               <header className="project-heading">
                 <p className="page-enter section-label">{project.category}</p>
                 <h1 className="page-enter portfolio-display-title project-detail-title">

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   type PointerEvent as ReactPointerEvent,
   type WheelEvent as ReactWheelEvent,
@@ -182,7 +183,7 @@ export function PhotographyCollectionDetail({
       <footer className="photo-detail-footer">
         <p>{collection.title}</p>
         <p>{collection.place}</p>
-        <a href="/photography/collections">All collections</a>
+        <Link href="/photography/collections">All collections</Link>
       </footer>
 
       {activeImageIndex !== null ? (

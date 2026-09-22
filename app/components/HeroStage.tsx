@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
@@ -56,13 +57,13 @@ export function HeroStage() {
       <section className="figma-hero" aria-labelledby="figma-home-title">
         <AnimatedGrainGradient variant="home" />
         <header className="figma-header" data-node-id="12:308">
-          <a className="figma-brand" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
+          <Link className="figma-brand" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
             Yihan Jiang
-          </a>
+          </Link>
 
           <nav className="figma-desktop-nav" aria-label="Primary navigation">
             {portfolioNavigation.map((item, index) => (
-              <a
+              <Link
                 className={index === 0 ? "is-active" : ""}
                 href={item.href}
                 key={item.href}
@@ -70,7 +71,7 @@ export function HeroStage() {
                 data-cuelume-hover="tick"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -92,9 +93,9 @@ export function HeroStage() {
           aria-label="Mobile navigation"
         >
           {portfolioNavigation.map((item) => (
-            <a href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
+            <Link href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
