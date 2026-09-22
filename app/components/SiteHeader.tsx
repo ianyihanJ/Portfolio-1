@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from "react";
 import { useState } from "react";
-import Link from "next/link";
 
 export const portfolioNavigation = [
   { label: "About", href: "/about" },
@@ -19,14 +18,14 @@ export function SiteHeader({ mobileMenuColor }: { mobileMenuColor?: string }) {
   return (
     <>
       <header className={`site-header${open ? " menu-is-open" : ""}`}>
-        <Link className="identity" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
+        <a className="identity" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
           Yihan Jiang
-        </Link>
+        </a>
         <nav className="desktop-navigation" aria-label="Primary navigation">
           {portfolioNavigation.map((link) => (
-            <Link key={link.href} href={link.href} data-cuelume-hover="tick">
+            <a key={link.href} href={link.href} data-cuelume-hover="tick">
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
         <button
@@ -55,7 +54,7 @@ export function SiteHeader({ mobileMenuColor }: { mobileMenuColor?: string }) {
         onPointerLeave={() => setActiveNavigation(null)}
       >
         {portfolioNavigation.map((link) => (
-          <Link
+          <a
             className={activeNavigation === link.href ? "is-active" : undefined}
             key={link.href}
             href={link.href}
@@ -70,7 +69,7 @@ export function SiteHeader({ mobileMenuColor }: { mobileMenuColor?: string }) {
             onPointerLeave={() => setActiveNavigation(null)}
           >
             <span>{link.label}</span>
-          </Link>
+          </a>
         ))}
       </nav>
     </>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageFrame } from "../../components/PageFrame";
 import { campaigns, getCampaign } from "../../data/campaigns";
@@ -52,9 +51,9 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
         <div className="project-case-layout">
           <aside className="project-case-panel">
             <div className="project-case-panel-inner">
-              <Link className="page-enter project-back-link" href="/campaigns">
+              <a className="page-enter project-back-link" href="/campaigns">
                 Back to campaigns
-              </Link>
+              </a>
 
               <header className="project-heading">
                 <p className="page-enter section-label">{campaign.category}</p>

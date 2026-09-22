@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -77,7 +76,7 @@ export function VisualDetailGallery({ item }: { item: VisualArchiveItem }) {
       </section>
 
       <footer className="visual-detail-outro">
-        <Link href="/visual-archive">Return to Visuals</Link>
+        <a href="/visual-archive">Return to Visuals</a>
       </footer>
     </article>
   );

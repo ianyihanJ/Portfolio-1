@@ -3,7 +3,6 @@
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
@@ -228,20 +227,20 @@ export function ProjectDrawer() {
       <section className="projects-gradient-cap" aria-labelledby="projects-title">
         <AnimatedGrainGradient variant="projects" />
         <header className={`figma-header projects-header${menuOpen ? " menu-is-open" : ""}`}>
-          <Link className="figma-brand" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
+          <a className="figma-brand" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
             Yihan Jiang
-          </Link>
+          </a>
 
           <nav className="figma-desktop-nav" aria-label="Primary navigation">
             {portfolioNavigation.map((item) => (
-              <Link
+              <a
                 className={item.href === "/work" ? "is-active" : ""}
                 href={item.href}
                 key={item.label}
                 data-cuelume-hover="tick"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -263,9 +262,9 @@ export function ProjectDrawer() {
           aria-label="Mobile navigation"
         >
           {portfolioNavigation.map((item) => (
-            <Link href={item.href} key={item.label} onClick={() => setMenuOpen(false)}>
+            <a href={item.href} key={item.label} onClick={() => setMenuOpen(false)}>
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -401,7 +400,7 @@ export function ProjectDrawer() {
 
             <div className="folder-project-list">
               {projectsFor(selected).map((project, index) => (
-                <Link className="folder-project-row" href={`/work/${project.slug}`} key={project.slug}>
+                <a className="folder-project-row" href={`/work/${project.slug}`} key={project.slug}>
                   <span className="folder-project-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="folder-project-title">
                     <strong>{project.title}</strong>
@@ -412,7 +411,7 @@ export function ProjectDrawer() {
                   <span className="folder-project-thumb">
                     <Image src={project.cover} alt="" width={280} height={158} sizes="180px" />
                   </span>
-                </Link>
+                </a>
               ))}
             </div>
 
