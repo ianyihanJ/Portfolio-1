@@ -271,7 +271,7 @@ export function AboutScrollStory() {
               About me
             </TextEffect>
             <TextEffect as="p" delay={0.16}>
-              Creative marketing shaped by culture, commercial clarity and visual thinking.
+              Hi, I am Yihan.
             </TextEffect>
           </div>
 

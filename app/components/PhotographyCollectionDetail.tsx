@@ -223,6 +223,7 @@ export function PhotographyCollectionDetail({
                 className="photo-lightbox-nav photo-lightbox-nav-previous"
                 type="button"
                 aria-label="Show previous photograph"
+                onPointerDown={(event) => event.stopPropagation()}
                 onClick={showPreviousImage}
               >
                 <ArrowLeft aria-hidden="true" />
@@ -242,6 +243,7 @@ export function PhotographyCollectionDetail({
                 className="photo-lightbox-nav photo-lightbox-nav-next"
                 type="button"
                 aria-label="Show next photograph"
+                onPointerDown={(event) => event.stopPropagation()}
                 onClick={showNextImage}
               >
                 <ArrowRight aria-hidden="true" />
