@@ -35,6 +35,18 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
   const nextCampaign = campaigns[(currentIndex + 1) % campaigns.length];
   const [cover, ...deckPages] = campaign.pages;
 
+  const renderNarrative = (copy: string | string[]) => {
+    const paragraphs = Array.isArray(copy) ? copy : [copy];
+
+    return (
+      <div className="project-story-paragraphs">
+        {paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <PageFrame
       theme="light"
@@ -81,12 +93,28 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
               <section className="page-enter project-story">
                 <div className="project-story-copy">
                   <h2>The insight</h2>
-                  <p>{campaign.insight}</p>
+                  {renderNarrative(campaign.insight)}
                 </div>
-                <div className="project-story-copy">
+                {campaign.idea ? (
+                  <div className="project-story-copy project-story-idea">
+                    <h2>The idea</h2>
+                    {renderNarrative(campaign.idea)}
+                  </div>
+                ) : null}
+                <div className={`project-story-copy${campaign.idea ? " project-story-copy-wide" : ""}`}>
                   <h2>The approach</h2>
-                  <p>{campaign.approach}</p>
+                  {renderNarrative(campaign.approach)}
                 </div>
+                {campaign.recognition ? (
+                  <div className="project-story-copy project-story-copy-wide campaign-recognition">
+                    <h2>Recognition</h2>
+                    <p>
+                      {campaign.recognition.lead}{" "}
+                      <strong>{campaign.recognition.award}</strong>{" "}
+                      {campaign.recognition.tail}
+                    </p>
+                  </div>
+                ) : null}
               </section>
             </div>
           </aside>

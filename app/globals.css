@@ -6950,6 +6950,10 @@ a {
   text-shadow: none;
 }
 
+.campaign-detail .campaign-recognition strong {
+  font-weight: 700;
+}
+
 .campaign-deck-stream {
   background: #fff;
 }
