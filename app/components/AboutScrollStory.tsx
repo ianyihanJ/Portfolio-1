@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BookOpenText, FileText, Instagram, Mail } from "lucide-react";
+import { ArrowUpRight, BookOpenText, FileText, Instagram, Mail } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -147,10 +147,10 @@ export function AboutScrollStory() {
             scrollTrigger: {
               trigger: ".about-scroll-story",
               start: "top top",
-              end: () => `+=${Math.round(window.innerHeight * (isMobile ? 3.5 : 3.25))}`,
+              end: () => `+=${Math.round(window.innerHeight * (isMobile ? 2.8 : 3.25))}`,
               pin: true,
-              scrub: 0.2,
-              anticipatePin: 1,
+              scrub: isMobile ? 0.12 : 0.2,
+              anticipatePin: isMobile ? 0.5 : 1,
               invalidateOnRefresh: true,
             },
           });
@@ -180,7 +180,8 @@ export function AboutScrollStory() {
                   yPercent: -50,
                   rotateZ: 0,
                   duration: 0.28,
-                  ease: "back.out(1.45)",
+                  ease: isMobile ? "power2.out" : "back.out(1.45)",
+                  force3D: true,
                   immediateRender: false,
                 },
                 position,
@@ -194,6 +195,7 @@ export function AboutScrollStory() {
                   scale: 1.045,
                   yPercent: -4,
                   duration: 0.54,
+                  force3D: true,
                   immediateRender: false,
                 },
                 position,
@@ -456,15 +458,19 @@ export function AboutScrollStory() {
           <div className="contact-links">
             <a href="mailto:ian.yihan.jiang@gmail.com" data-cuelume-press="pulse">
               <span className="contact-link-label"><Mail aria-hidden="true" /><TextEffect>Email</TextEffect></span>
+              <ArrowUpRight className="contact-link-arrow" aria-hidden="true" />
             </a>
             <a href="https://www.instagram.com/iannnnnnn_7/?hl=en-gb" target="_blank" rel="noreferrer">
               <span className="contact-link-label"><Instagram aria-hidden="true" /><TextEffect>Instagram</TextEffect></span>
+              <ArrowUpRight className="contact-link-arrow" aria-hidden="true" />
             </a>
             <a href="https://www.xiaohongshu.com/user/profile/631c7def0000000023025023" target="_blank" rel="noreferrer">
               <span className="contact-link-label"><BookOpenText aria-hidden="true" /><TextEffect>Xiaohongshu</TextEffect></span>
+              <ArrowUpRight className="contact-link-arrow" aria-hidden="true" />
             </a>
             <a href="/documents/Yihan_Jiang_CV_2026.pdf" target="_blank" rel="noreferrer">
               <span className="contact-link-label"><FileText aria-hidden="true" /><TextEffect>Résumé</TextEffect></span>
+              <ArrowUpRight className="contact-link-arrow" aria-hidden="true" />
             </a>
           </div>
         </section>

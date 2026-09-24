@@ -4872,11 +4872,18 @@ html[data-platform="windows"] .visual-horizontal-project {
 }
 
 .about-frame .contact-links a::after {
-  content: "↗";
+  content: none;
 }
 
 .about-frame .contact-links a:first-child::after {
-  content: "↗";
+  content: none;
+}
+
+.contact-link-arrow {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke-width: 1.45;
 }
 
 .about-frame .contact-links a:hover,
@@ -8146,5 +8153,189 @@ html[data-platform="windows"] .visual-horizontal-project {
 @media (prefers-reduced-motion: reduce) {
   .collection-entry-curtain {
     display: none;
+  }
+}
+
+/* Portrait/mobile refinements: preserve the desktop composition without clipped type. */
+.campaign-ledger-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.campaign-ledger-open svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  stroke-width: 1.6;
+}
+
+@media (max-width: 767px) {
+  .figma-cover-caption {
+    right: 30px;
+    width: calc(100% - 50px);
+  }
+
+  .figma-cover-caption h1 {
+    font-size: clamp(3.05rem, 15vw, 5.4rem);
+  }
+
+  .figma-title-mask {
+    padding-right: 0.16em;
+  }
+
+  .projects-gradient-cap,
+  .campaign-gradient-cap {
+    min-height: 355px;
+  }
+
+  .projects-gradient-copy h1.portfolio-display-title,
+  .campaign-index-heading h1.portfolio-display-title {
+    max-width: 100%;
+    font-size: clamp(3.15rem, 15.2vw, 4.8rem);
+    line-height: 0.9;
+    white-space: nowrap;
+  }
+
+  .campaign-index-heading {
+    position: absolute;
+    right: var(--page-pad);
+    bottom: 22px;
+    left: var(--page-pad);
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    gap: 7px;
+    padding-bottom: 0;
+  }
+
+  .campaign-index-heading > p:last-child,
+  .projects-gradient-copy > p:last-child {
+    width: 100%;
+    max-width: none;
+    line-height: 1.32;
+  }
+
+  .campaign-ledger-row {
+    min-height: 330px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 16px;
+    row-gap: 14px;
+    padding: 24px var(--page-pad) 42px;
+  }
+
+  .campaign-ledger-title {
+    grid-column: 1 / -1;
+    display: block;
+  }
+
+  .campaign-ledger-title > span {
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  .campaign-ledger-title h2 {
+    max-width: 13ch;
+    font-size: clamp(1.85rem, 8.6vw, 3.25rem);
+    line-height: 0.96;
+  }
+
+  .campaign-ledger-meta {
+    grid-column: 1;
+    grid-row: 2;
+    gap: 7px;
+  }
+
+  .campaign-ledger-row > p {
+    grid-column: 2;
+    grid-row: 2;
+    max-width: none;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .campaign-ledger-row figure {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: min(72%, 260px);
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    justify-self: start;
+  }
+
+  .campaign-ledger-open {
+    right: var(--page-pad);
+    bottom: 16px;
+  }
+
+  .about-story-stage,
+  .about-story-frame,
+  .about-story-frame img {
+    backface-visibility: hidden;
+  }
+
+  .about-story-frame,
+  .about-story-frame img {
+    transform-style: preserve-3d;
+  }
+
+  .about-editorial {
+    position: relative;
+    z-index: 4;
+    padding-top: 68px;
+    background: #fff;
+  }
+
+  .about-profile {
+    position: relative;
+    z-index: 1;
+    padding-top: 52px;
+  }
+
+  .about-fold-trigger {
+    height: 72px;
+    align-items: start;
+    padding: 0 12px;
+  }
+
+  .about-fold-number {
+    padding-top: 11px;
+  }
+
+  .about-fold-title.portfolio-display-title {
+    align-self: start;
+    padding-top: 8px;
+    padding-right: 54px;
+    padding-left: 32px;
+    font-size: clamp(2.05rem, 10vw, 3.4rem);
+    line-height: 0.98;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transform: none;
+  }
+
+  .about-fold-toggle {
+    top: 10px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-fold-panel.is-active .about-fold-trigger {
+    height: 94px;
+  }
+
+  .about-fold-panel.is-active .about-fold-title.portfolio-display-title {
+    transform: none;
+  }
+
+  .contact-link-arrow {
+    width: 16px;
+    height: 16px;
   }
 }

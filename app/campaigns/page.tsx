@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { PageFrame } from "../components/PageFrame";
 import { AnimatedGrainGradient } from "../components/AnimatedGrainGradient";
 import { campaigns } from "../data/campaigns";
@@ -60,7 +61,9 @@ export default function CampaignsPage() {
                   sizes="(max-width: 767px) 42vw, 25vw"
                 />
               </figure>
-              <span className="campaign-ledger-open">View campaign ↗</span>
+              <span className="campaign-ledger-open">
+                View campaign <ArrowUpRight aria-hidden="true" />
+              </span>
             </a>
           ))}
         </div>
