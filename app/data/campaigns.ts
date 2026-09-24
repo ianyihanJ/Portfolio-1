@@ -51,11 +51,11 @@ export const campaigns: Campaign[] = [
     year: "2026",
     role: "Marketing Strategy and Campaign Proposal",
     summary:
-      "A focused growth proposal for strengthening LinkedIn content, digital presentation and event communications in institutional trading.",
+      "A marketing pitch focused on building greater consistency across LinkedIn, digital content and event communications for an institutional trading brand.",
     insight:
-      "Competitors were building authority through expert voices, recurring market formats and scan-friendly data. iSAM already had the specialist capability to own that conversation.",
+      "iSAM Securities had strong specialist expertise, but its marketing often appeared as individual pieces rather than part of a consistent brand narrative. Competitor analysis showed that stronger firms were building authority through recurring content formats, expert commentary, clearer data presentation and more distinctive visual identities.",
     approach:
-      "The proposal turns competitor analysis into practical improvements across LinkedIn, the website and events, supported by a four-week content calendar and visual examples.",
+      "I reviewed iSAM's LinkedIn, website, editorial content and event presence alongside key competitors, then translated the findings into practical recommendations across content, design and audience engagement. The proposal included a recurring LinkedIn series, a four week content plan, visual and data visualisation concepts, and a video campaign framework designed to make specialist market content more engaging and recognisable.",
     accent: "#227e73",
     ink: "#f8f7f1",
     pages: makePages("isam-securities", "iSAM Securities", 12, 1920, 1080),
