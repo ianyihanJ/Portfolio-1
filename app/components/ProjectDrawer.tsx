@@ -83,6 +83,8 @@ export function ProjectDrawer() {
 
   const { contextSafe } = useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const media = gsap.matchMedia();
 
       media.add(
@@ -144,6 +146,16 @@ export function ProjectDrawer() {
       const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
 
+      if (
+        document.documentElement.dataset.platform === "windows" ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        closeButton.current?.focus();
+        return () => {
+          document.body.style.overflow = previousOverflow;
+        };
+      }
+
       const timeline = gsap.timeline({
         defaults: { ease: "power3.inOut" },
         onComplete: () => closeButton.current?.focus(),
@@ -176,14 +188,31 @@ export function ProjectDrawer() {
   );
 
   const closeFolder = () => {
+    if (
+      document.documentElement.dataset.platform === "windows" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setSelected(null);
+      return;
+    }
+
     contextSafe(() => {
       if (!sheet.current) {
         setSelected(null);
         return;
       }
 
+      let completed = false;
+      const finishClose = () => {
+        if (completed) return;
+        completed = true;
+        window.clearTimeout(fallbackClose);
+        setSelected(null);
+      };
+      const fallbackClose = window.setTimeout(finishClose, 1100);
+
       gsap
-        .timeline({ onComplete: () => setSelected(null) })
+        .timeline({ onComplete: finishClose })
         .to(sheet.current, {
           yPercent: 104,
           rotationX: -7,
@@ -209,6 +238,7 @@ export function ProjectDrawer() {
   }, [selected]);
 
   const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (document.documentElement.dataset.platform === "windows") return;
     if (!rotateXTo.current || !rotateYTo.current) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;

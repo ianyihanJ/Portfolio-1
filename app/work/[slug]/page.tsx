@@ -120,7 +120,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         poster={project.video.poster}
         preload={project.video.autoPlay ? "auto" : "metadata"}
       >
-        <source src={project.video.src} />
+        <source src={project.video.src} type="video/mp4" />
       </video>
     </figure>
   ) : null;

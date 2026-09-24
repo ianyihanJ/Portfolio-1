@@ -2,7 +2,9 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import * as THREE from "three";
+import { useWindowsCompatibilityMode } from "../lib/platform";
 import type { VisualArchiveItem } from "../data/visuals";
 
 type Mood = {
@@ -79,11 +81,13 @@ export function InteractiveVisualGallery({ items }: { items: VisualArchiveItem[]
   const canvas = useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  const compatibilityMode = useWindowsCompatibilityMode();
 
   useEffect(() => {
     const rootElement = root.current;
     const canvasElement = canvas.current;
     if (!rootElement || !canvasElement || items.length === 0) return;
+    if (compatibilityMode) return;
 
     let disposed = false;
     let animationFrame = 0;
@@ -404,9 +408,39 @@ export function InteractiveVisualGallery({ items }: { items: VisualArchiveItem[]
       backgroundScene.clear();
       renderer.dispose();
     };
-  }, [items]);
+  }, [compatibilityMode, items]);
 
   if (items.length === 0) return null;
+
+  if (compatibilityMode || failed) {
+    return (
+      <section className="visual-fallback" aria-label="Visual archive projects">
+        <header className="visual-fallback-heading">
+          <p>Visual archive</p>
+          <h2>Selected visual projects</h2>
+        </header>
+        <div className="visual-fallback-grid">
+          {items.map((item) => (
+            <a className="visual-fallback-card" href={`/visual-archive/${item.slug}`} key={item.slug}>
+              <span className="visual-fallback-image">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 767px) 100vw, 50vw"
+                />
+              </span>
+              <span className="visual-fallback-copy">
+                <strong>{item.title}</strong>
+                <span>{item.summary}</span>
+                <time>{item.year}</time>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -475,11 +509,6 @@ export function InteractiveVisualGallery({ items }: { items: VisualArchiveItem[]
           </div>
         ) : null}
 
-        {failed ? (
-          <div className="depth-gallery-fallback">
-            <p>The interactive gallery needs WebGL.</p>
-          </div>
-        ) : null}
       </div>
     </section>
   );

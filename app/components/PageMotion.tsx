@@ -12,6 +12,8 @@ export function PageMotion({ children }: { children: React.ReactNode }) {
 
   useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const media = gsap.matchMedia();
 
       media.add("(prefers-reduced-motion: no-preference)", () => {

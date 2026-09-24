@@ -2,6 +2,7 @@
 
 import { GrainGradient } from "@paper-design/shaders-react";
 import { useReducedMotion } from "framer-motion";
+import { useWindowsCompatibilityMode } from "../lib/platform";
 
 type GradientVariant = "home" | "projects" | "campaigns" | "visuals" | "about";
 
@@ -15,8 +16,19 @@ const gradientColours: Record<GradientVariant, string[]> = {
 
 export function AnimatedGrainGradient({ variant }: { variant: GradientVariant }) {
   const reduceMotion = useReducedMotion();
+  const compatibilityMode = useWindowsCompatibilityMode();
+  const allowShader = !compatibilityMode && !reduceMotion;
   const isHome = variant === "home";
   const isAbout = variant === "about";
+
+  if (!allowShader) {
+    return (
+      <div
+        className={`gradient-shader-layer gradient-shader-static gradient-shader-${variant}`}
+        aria-hidden="true"
+      />
+    );
+  }
 
   return (
     <div className={`gradient-shader-layer gradient-shader-${variant}`} aria-hidden="true">
@@ -29,7 +41,7 @@ export function AnimatedGrainGradient({ variant }: { variant: GradientVariant })
         intensity={isHome ? 0.81 : isAbout ? 0.61 : 0.35}
         noise={isHome ? 0.21 : 0}
         shape={isHome || isAbout ? "corners" : "wave"}
-        speed={reduceMotion ? 0 : isHome ? 0.76 : isAbout ? 1 : 1.4}
+        speed={isHome ? 0.76 : isAbout ? 1 : 1.4}
         scale={isHome ? 1.32 : isAbout ? 0.92 : 1.2}
         rotation={isHome ? 48 : isAbout ? 208 : 0}
         offsetX={isHome ? -1 : isAbout ? 0 : 0.18}

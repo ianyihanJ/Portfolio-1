@@ -28,6 +28,8 @@ export function PhotographyArchive() {
 
   useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const media = gsap.matchMedia();
 
       media.add(
@@ -178,6 +180,11 @@ export function PhotographyArchive() {
 
   const enterCollections = () => {
     if (transitionMask) return;
+    if (document.documentElement.dataset.platform === "windows") {
+      window.location.assign("/photography/collections");
+      return;
+    }
+
     const source = root.current?.querySelector<HTMLElement>("[data-transition-source='true']");
     const rect = source?.getBoundingClientRect();
     const viewportWidth = window.innerWidth;

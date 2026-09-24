@@ -109,6 +109,8 @@ export function AboutScrollStory() {
 
   useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const frames = gsap.utils.toArray<HTMLElement>(".about-story-frame", root.current);
       const media = gsap.matchMedia();
 

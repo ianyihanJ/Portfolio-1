@@ -48,15 +48,19 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const userAgent = requestHeaders.get("user-agent") ?? "";
+  const isWindows = /Windows/i.test(userAgent);
+
   return (
-    <html lang="en">
+    <html lang="en" data-platform={isWindows ? "windows" : undefined}>
       <body className={inter.variable}>
-        <SmoothScroll />
+        <SmoothScroll disabled={isWindows} />
         {children}
       </body>
     </html>

@@ -45,6 +45,7 @@ export function PhotographyCollectionDetail({
   useGSAP(
     () => {
       document.getElementById("photo-collection-route-handoff")?.remove();
+      if (document.documentElement.dataset.platform === "windows") return;
 
       const media = gsap.matchMedia();
       media.add(

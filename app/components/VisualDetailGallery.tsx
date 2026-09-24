@@ -14,6 +14,8 @@ export function VisualDetailGallery({ item }: { item: VisualArchiveItem }) {
 
   useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const wrapper = root.current?.querySelector<HTMLElement>(".visual-horizontal-wrapper");
       const strip = root.current?.querySelector<HTMLElement>(".visual-horizontal-strip");
       if (!wrapper || !strip) return;

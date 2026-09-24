@@ -17,6 +17,8 @@ export function HeroStage() {
 
   const { contextSafe } = useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const media = gsap.matchMedia();
 
       media.add("(prefers-reduced-motion: no-preference)", () => {
@@ -38,7 +40,12 @@ export function HeroStage() {
   );
 
   const scramble = contextSafe((element: HTMLElement, label: string) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (
+      document.documentElement.dataset.platform === "windows" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
     gsap.to(element, {
       duration: 0.42,
       scrambleText: {

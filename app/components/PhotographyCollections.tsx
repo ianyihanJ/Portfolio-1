@@ -15,6 +15,8 @@ export function PhotographyCollections() {
 
   useGSAP(
     () => {
+      if (document.documentElement.dataset.platform === "windows") return;
+
       const media = gsap.matchMedia();
       media.add("(prefers-reduced-motion: no-preference)", () => {
         const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });

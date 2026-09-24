@@ -235,7 +235,7 @@ export const projects: Project[] = [
       { src: "/projects/coca-cola/05-social-posters.jpg", alt: "Coca-Cola Chinese New Year social poster series", caption: "Social stories", section: "Social Media Promotion" },
     ],
     video: {
-      src: "/projects/coca-cola/interaction-film.mov",
+      src: "/projects/coca-cola/interaction-film.mp4",
       poster: "/projects/coca-cola/01-game-challenge.jpg",
       caption: "Interactive experience recording",
       first: true,

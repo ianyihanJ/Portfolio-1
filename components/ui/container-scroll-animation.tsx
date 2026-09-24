@@ -69,7 +69,7 @@ function ScrollCard({
 }) {
   return (
     <motion.div
-      className="mx-auto w-full max-w-[1480px] origin-center will-change-transform"
+      className="container-scroll-card mx-auto w-full max-w-[1480px] origin-center will-change-transform"
       style={{
         rotateX: rotate,
         scale,
