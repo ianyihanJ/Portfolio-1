@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function CampaignsPage() {
   return (
-    <PageFrame theme="light" className="campaigns-frame">
+    <PageFrame theme="light" className="campaigns-frame" mobileMenuColor="#98cfae">
       <section className="campaign-index" aria-labelledby="campaign-title">
         <div className="campaign-gradient-cap">
           <AnimatedGrainGradient variant="campaigns" />

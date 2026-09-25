@@ -14,10 +14,16 @@ export const portfolioNavigation = [
 export function SiteHeader({ mobileMenuColor }: { mobileMenuColor?: string }) {
   const [open, setOpen] = useState(false);
   const [activeNavigation, setActiveNavigation] = useState<string | null>(null);
+  const mobileMenuStyle = mobileMenuColor
+    ? ({ "--mobile-menu-bg": mobileMenuColor } as CSSProperties)
+    : undefined;
 
   return (
     <>
-      <header className={`site-header${open ? " menu-is-open" : ""}`}>
+      <header
+        className={`site-header${open ? " menu-is-open" : ""}`}
+        style={mobileMenuStyle}
+      >
         <a className="identity" href="/" aria-label="Yihan Jiang home" data-cuelume-hover="tick">
           Yihan Jiang
         </a>
@@ -45,11 +51,7 @@ export function SiteHeader({ mobileMenuColor }: { mobileMenuColor?: string }) {
       <nav
         id="mobile-navigation"
         className={`mobile-navigation${open ? " is-open" : ""}${activeNavigation ? " has-active-item" : ""}`}
-        style={
-          mobileMenuColor
-            ? ({ "--mobile-menu-bg": mobileMenuColor } as CSSProperties)
-            : undefined
-        }
+        style={mobileMenuStyle}
         aria-label="Mobile navigation"
         onPointerLeave={() => setActiveNavigation(null)}
       >

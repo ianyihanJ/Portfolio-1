@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageFrame theme="light" className="about-frame">
+    <PageFrame theme="light" className="about-frame" mobileMenuColor="#ffda24">
       <AboutScrollStory />
     </PageFrame>
   );
