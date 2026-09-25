@@ -51,17 +51,17 @@ export function PhotographyArchive() {
           items.forEach((item, index) => columns[index % 3].push(item));
 
           if (reduceMotion) {
-            gsap.set(".photo-sticky-grid", { autoAlpha: 1, scale: isMobile ? 1.35 : 1.9 });
-            gsap.set(columns[0], { xPercent: isMobile ? -22 : -44, yPercent: 0 });
-            gsap.set(columns[2], { xPercent: isMobile ? 22 : 44, yPercent: 0 });
+            gsap.set(".photo-sticky-grid", { autoAlpha: 1, scale: isMobile ? 1.5 : 1.9 });
+            gsap.set(columns[0], { xPercent: isMobile ? -42 : -44, yPercent: 0 });
+            gsap.set(columns[2], { xPercent: isMobile ? 42 : 44, yPercent: 0 });
             gsap.set(columns[1], {
               yPercent: (index) =>
                 index < Math.floor(columns[1].length / 2)
                   ? isMobile
-                    ? -18
+                    ? -44
                     : -36
                   : isMobile
-                    ? 18
+                    ? 44
                     : 36,
             });
             gsap.set(".photo-sticky-heading", { autoAlpha: 1, yPercent: 0 });
@@ -98,21 +98,21 @@ export function PhotographyArchive() {
             .to(items, { yPercent: 0, duration: 0.82, stagger: 0.018 }, 0)
             .to(
               ".photo-sticky-grid",
-              { scale: isMobile ? 1.35 : 1.9, duration: 1.08 },
+              { scale: isMobile ? 1.5 : 1.9, duration: 1.08 },
               0.74,
             )
-            .to(columns[0], { xPercent: isMobile ? -22 : -44, duration: 1.02 }, 0.74)
-            .to(columns[2], { xPercent: isMobile ? 22 : 44, duration: 1.02 }, 0.74)
+            .to(columns[0], { xPercent: isMobile ? -42 : -44, duration: 1.02 }, 0.74)
+            .to(columns[2], { xPercent: isMobile ? 42 : 44, duration: 1.02 }, 0.74)
             .to(
               columns[1],
               {
                 yPercent: (index) =>
                   index < Math.floor(columns[1].length / 2)
                     ? isMobile
-                      ? -18
+                      ? -44
                       : -36
                     : isMobile
-                      ? 18
+                      ? 44
                       : 36,
                 duration: 0.72,
               },

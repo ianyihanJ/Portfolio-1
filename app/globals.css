@@ -8298,21 +8298,25 @@ html[data-platform="windows"] .visual-horizontal-project {
   }
 
   .about-fold-trigger {
-    height: 72px;
+    height: 108px;
+    grid-template-rows: 40px minmax(0, 1fr);
     align-items: start;
     padding: 0 12px;
   }
 
   .about-fold-number {
+    grid-row: 1;
     padding-top: 11px;
   }
 
   .about-fold-title.portfolio-display-title {
+    grid-row: 2;
     align-self: start;
-    padding-top: 8px;
+    padding-top: 2px;
+    padding-bottom: 12px;
     padding-right: 54px;
     padding-left: 32px;
-    font-size: clamp(2.05rem, 10vw, 3.4rem);
+    font-size: clamp(1.95rem, 9.6vw, 3.2rem);
     line-height: 0.98;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -8327,7 +8331,7 @@ html[data-platform="windows"] .visual-horizontal-project {
   }
 
   .about-fold-panel.is-active .about-fold-trigger {
-    height: 94px;
+    height: 118px;
   }
 
   .about-fold-panel.is-active .about-fold-title.portfolio-display-title {
@@ -8337,5 +8341,27 @@ html[data-platform="windows"] .visual-horizontal-project {
   .contact-link-arrow {
     width: 16px;
     height: 16px;
+  }
+
+  .about-fold-panel + .about-fold-panel {
+    margin-top: -10px;
+  }
+
+  .photo-sticky-heading.portfolio-display-title {
+    max-width: calc(100vw - 40px);
+    font-size: clamp(2.25rem, 10vw, 2.9rem);
+  }
+
+  .photo-collection-preview-stack {
+    width: min(54vw, 224px);
+  }
+
+  .photo-collection-title-list {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-column: 1;
+    align-items: flex-start;
   }
 }
